@@ -30,7 +30,7 @@ describe('Amazon Homepage', () => {
     await page.goto('https://www.amazon.com',{ waitUntil: 'networkidle0' })
     const searchInput = await page.$('#twotabsearchtextbox')
     expect(searchInput).toBeTruthy()
-  })
+  }, 10000)
 
   test('shows search results after search input', async () => {
     await page.type('#twotabsearchtextbox', 'nyan cat pullover')

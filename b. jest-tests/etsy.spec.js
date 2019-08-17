@@ -31,7 +31,7 @@ describe('Etsy shopping cart', () => {
   const waitForSelectorTimeout = (page, sel) => page.waitForSelector(sel, { timeout: 3000 })
 
   beforeAll(async () => {
-    browser = await puppeteer.launch({ headless: false })
+    browser = await puppeteer.launch({ headless: true })
     /**
      *
      * @type {Page}
