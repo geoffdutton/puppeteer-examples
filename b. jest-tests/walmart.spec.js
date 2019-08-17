@@ -4,16 +4,22 @@
  */
 
 const puppeteer = require('puppeteer')
-let browser
-let page
-
-beforeAll(async () => {
-  browser = await puppeteer.launch()
-  page = await browser.newPage()
-  await page.tracing.start({path: 'trace.json'})
-})
 
 describe('Walmart shopping cart', () => {
+  let browser
+  let page
+
+  beforeAll(async () => {
+    browser = await puppeteer.launch()
+    page = await browser.newPage()
+    await page.tracing.start({path: 'trace.json'})
+  })
+
+  afterAll(async () => {
+    await page.tracing.stop()
+    await browser.close()
+  })
+
   test('shows the correct product', async () => {
     await page.setViewport({ width: 1280, height: 800 })
     await page.goto('https://www.walmart.com/ip/Super-Mario-Odyssey-Nintendo-Switch/56011600', { waitUntil: 'networkidle2' })
@@ -27,9 +33,4 @@ describe('Walmart shopping cart', () => {
     const quantity = await page.$eval('.copy-mini.pos-item-qty', txt => txt.textContent)
     expect(quantity).toBe('(1 item)')
   }, 10000)
-
-  afterAll(async () => {
-    await page.tracing.stop()
-    await browser.close()
-  })
 })

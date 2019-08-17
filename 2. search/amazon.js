@@ -13,12 +13,10 @@ const selectors = {
 }
 
 ;(async () => {
-  console.log('\nBegin')
   const browser = await puppeteer.launch({ headless: true })
   const page = await browser.newPage()
   await page.setViewport({ width: 1280, height: 800 })
   await page.goto('https://www.amazon.com')
-  console.log('go to amazon.com')
   await page.type('#twotabsearchtextbox', 'nyan cat pullover')
   await page.click('input.nav-input')
   await page.waitForSelector(selectors.resultsCol)

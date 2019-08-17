@@ -15,17 +15,21 @@ const pageHelpersFactory = page => {
   }
 }
 
-let browser
-let page
-let pageHelpers
-
-beforeAll(async () => {
-  browser = await puppeteer.launch({ headless: false })
-  page = await browser.newPage()
-  pageHelpers = pageHelpersFactory(page)
-})
-
 describe('codesandbox.io', () => {
+  let browser
+  let page
+  let pageHelpers
+
+  beforeAll(async () => {
+    browser = await puppeteer.launch({ headless: true })
+    page = await browser.newPage()
+    pageHelpers = pageHelpersFactory(page)
+  })
+
+  afterAll(async () => {
+    await browser.close()
+  })
+
   test('creates a Vue.js sandbox', async () => {
     const vueBtn = '//button//div[contains(text(), "Vue")]'
     await page.setViewport({ width: 1280, height: 800 })
@@ -39,8 +43,4 @@ describe('codesandbox.io', () => {
     await page.screenshot({ path: 'codesandbox.png' })
     expect(editor).toBeTruthy()
   }, 30000)
-})
-
-afterAll(async () => {
-  await browser.close()
 })

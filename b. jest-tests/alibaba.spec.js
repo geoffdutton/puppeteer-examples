@@ -4,15 +4,20 @@
  */
 
 const puppeteer = require('puppeteer')
-let browser
-let page
-
-beforeAll(async () => {
-  browser = await puppeteer.launch()
-  page = await browser.newPage()
-})
 
 describe('Alibaba Search', () => {
+  let browser
+  let page
+
+  beforeAll(async () => {
+    browser = await puppeteer.launch()
+    page = await browser.newPage()
+  })
+
+  afterAll(async () => {
+    await browser.close()
+  })
+
   test('has search input', async () => {
     await page.setViewport({ width: 1280, height: 800 })
     await page.goto('https://www.alibaba.com', { waitUntil: 'networkidle0' })
@@ -26,9 +31,5 @@ describe('Alibaba Search', () => {
     await page.waitForSelector('[data-content="abox-ProductNormalList"]')
     const firstProduct = await page.$('.item-content')
     expect(firstProduct).toBeTruthy()
-  })
-
-  afterAll(async () => {
-    await browser.close()
   })
 })
