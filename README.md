@@ -6,7 +6,7 @@ Puppeteer Headless Chrome examples for real life use cases. Clone this repo and 
 git clone https://github.com/checkly/puppeteer-examples
 cd puppeteer-examples
 npm i
-node 2.\ search/amazon.test.js
+node 2.\ search/amazon.js
 ```
 You can run these scripts in the [puppeteer sandbox](https://puppeteersandbox.com).
 
@@ -19,12 +19,12 @@ You can run these scripts in the [puppeteer sandbox](https://puppeteersandbox.co
   * [get title](#get-title)
   * [hover](#hover)
   * [keyboard](#keyboard)
+  * [location_faker](#location-faker)
   * [mouse](#mouse)
   * [pdf](#pdf)
   * [screenshots](#screenshots)
   * [screenshots clipped](#screenshots-clipped)
   * [set cookie](#set-cookie)
-  * [fake location](#fake-location)
 - [2. search](#2-search)
   * [Amazon search](#amazon-search)
   * [Booking.com search](#booking-com-search)
@@ -101,6 +101,11 @@ types into a text editor
 
 
 [1. basics/keyboard.js](https://github.com/checkly/puppeteer-examples/blob/master/1.%20basics/keyboard.js)
+### location_faker
+Fake the location for the geolocation API used by the browsers
+
+
+[1. basics/location_faker.js](https://github.com/checkly/puppeteer-examples/blob/master/1.%20basics/location_faker.js)
 ### mouse
 Most of the things you can click using straight .click() handlers, but for some situation directly instructing the mouse might be convenient. This example load a page that plays back what mouse actions are used on the page.
 
@@ -126,18 +131,13 @@ Sets the "login_email" property in a Paypal cookie so the login screen is pre-fi
 
 
 [1. basics/set_cookie.js](https://github.com/checkly/puppeteer-examples/blob/master/1.%20basics/set_cookie.js)
-### fake-location
-Overrides the "Location Access" to always allow for a certain URL and when that URL requests the geolocation, we serve it with our own set of lat/long. Useful for testing of services having location constraints.
-
-
-[1. basics/location_faker.js](https://github.com/checkly/puppeteer-examples/blob/master/1.%20basics/location_faker.js)
 ## 2. search
 Common search input and select methods on search results.  
 ### Amazon search
 Looks for a "nyan cat pullover" on amazon.com, goes two page two clicks the third one.
 
 
-[2. search/amazon.test.js](https://github.com/checkly/puppeteer-examples/blob/master/2.%20search/amazon.js)
+[2. search/amazon.js](https://github.com/checkly/puppeteer-examples/blob/master/2.%20search/amazon.js)
 ### Booking.com search
 Finds accommodations in Berlin on Booking.com, takes a screenshot and logs the top 10.
 
@@ -147,7 +147,7 @@ Finds accommodations in Berlin on Booking.com, takes a screenshot and logs the t
 undefined
 
 
-[2. search/duck_duck_go.test.js](https://github.com/checkly/puppeteer-examples/blob/master/2.%20search/duck_duck_go.js)
+[2. search/duck_duck_go.js](https://github.com/checkly/puppeteer-examples/blob/master/2.%20search/duck_duck_go.js)
 ### Youtube search
 Looks for Fleetwood Mac's "Dreams" video on youtube.com and clicks on the third video. Waits for 5 seconds for the video to load.
 
@@ -176,12 +176,12 @@ How to handle shopping cart functions like adding and removing items.
 Goes to the face paint category and adds to the shopping cart.
 
 
-[4. shopping-carts/staples.test.js](https://github.com/checkly/puppeteer-examples/blob/master/4.%20shopping-carts/staples.js)
+[4. shopping-carts/staples.js](https://github.com/checkly/puppeteer-examples/blob/master/4.%20shopping-carts/staples.js)
 ### Walmart shopping cart
 Looks for a Nintendo's Mario Odyssey and adds it to the shopping cart.
 
 
-[4. shopping-carts/walmart.test.js](https://github.com/checkly/puppeteer-examples/blob/master/4.%20shopping-carts/walmart.js)
+[4. shopping-carts/walmart.js](https://github.com/checkly/puppeteer-examples/blob/master/4.%20shopping-carts/walmart.js)
 ## 5. parallel-pages
 How to handle Allow parallel processing pages.  
 ### Screenshots parallel pages
@@ -200,47 +200,47 @@ undefined
 Searches Alibaba.com for a product and checks if the results show up
 
 
-[a. mocha-tests/alibaba.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/alibaba.js)
+[a. mocha-tests/alibaba.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/alibaba.test.js)
 ### Amazon product search
 Searches Amazon.com for a product and checks if the results show up
 
 
-[a. mocha-tests/amazon.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/amazon.js)
+[a. mocha-tests/amazon.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/amazon.test.js)
 ### codesandbox.io
 Goes to codesandbox.io, creates a new sandbox and selects the Vue.js template
 
 
-[a. mocha-tests/codesandbox.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/codesandbox.js)
+[a. mocha-tests/codesandbox.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/codesandbox.test.js)
 ### Duck Duck Go search
 Goes to duckduckgo.com, searches for "chrome puppeteer", asserts the result and snaps a screenshots
 
 
-[a. mocha-tests/duck_duck_go.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/duck_duck_go.js)
+[a. mocha-tests/duck_duck_go.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/duck_duck_go.test.js)
 ### Etsy shopping cart
 Goes to etsy.com, select the first knick knack and adds it to the shopping cart.
 
 
-[a. mocha-tests/etsy.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/etsy.js)
+[a. mocha-tests/etsy.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/etsy.test.js)
 ### Gmail signup
 Checks the signup flow from the landing page. Clicks the
 
 
-[a. mocha-tests/gmail.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/gmail.js)
+[a. mocha-tests/gmail.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/gmail.test.js)
 ### Google search
 Searches Google.com for a term and checks if the first link matches. This check should fail.
 
 
-[a. mocha-tests/google.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/google.js)
+[a. mocha-tests/google.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/google.test.js)
 ### Staples shopping cart
 Goes to staples.com and adds a some facepaint to an empty shopping cart. Validates the correct amount.
 
 
-[a. mocha-tests/staples.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/staples.js)
+[a. mocha-tests/staples.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/staples.test.js)
 ### Walmart shopping cart
 Goes to walmart.com and adds a Nintendo game to an empty shopping cart. Validates the correct amount.
 
 
-[a. mocha-tests/walmart.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/walmart.js)
+[a. mocha-tests/walmart.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/walmart.test.js)
 ## B. jest-tests
 undefined  
 ### Alibaba product search
