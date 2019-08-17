@@ -3,17 +3,8 @@
  * @desc Goes to codesandbox.io, creates a new sandbox and selects the Vue.js template
  */
 const puppeteer = require('puppeteer')
-const pageHelpersFactory = page => {
-  return {
-    async clickXpath (xpath) {
-      const [btn] = await page.$x(xpath)
-      if (!btn) {
-        throw new Error(`No element for for xPath: ${xpath}`)
-      }
-      await btn.click()
-    }
-  }
-}
+const helpers = require('../test_helpers')
+const selectors = require('../selectors/codesandbox.io')
 
 describe('codesandbox.io', () => {
   let browser
@@ -23,7 +14,7 @@ describe('codesandbox.io', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch({ headless: true })
     page = await browser.newPage()
-    pageHelpers = pageHelpersFactory(page)
+    pageHelpers = helpers.pageHelpersFactory(page)
   })
 
   afterAll(async () => {
@@ -31,15 +22,15 @@ describe('codesandbox.io', () => {
   })
 
   test('creates a Vue.js sandbox', async () => {
-    const vueBtn = '//button//div[contains(text(), "Vue")]'
+    const vueBtn = selectors.vueBtnXpath
     await page.setViewport({ width: 1280, height: 800 })
     await page.goto('https://codesandbox.io/', { waitUntil: 'networkidle2' })
-    await page.waitForSelector('a[href="/s"]')
-    await page.click('a[href="/s"]')
+    await page.waitForSelector(selectors.startingAnchor)
+    await page.click(selectors.startingAnchor)
     await page.waitForXPath(vueBtn, 5000)
     await pageHelpers.clickXpath(vueBtn)
-    await page.waitForSelector('.react-monaco-editor-container')
-    const editor = await page.$('.react-monaco-editor-container')
+    await page.waitForSelector(selectors.reactEditorContainer)
+    const editor = await page.$(selectors.reactEditorContainer)
     await page.screenshot({ path: 'codesandbox.png' })
     expect(editor).toBeTruthy()
   }, 30000)

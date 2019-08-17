@@ -5,6 +5,9 @@
 
 const assert = require('assert').strict
 const puppeteer = require('puppeteer')
+const helpers = require('../test_helpers')
+const selectors = require('../selectors/etsy')
+
 let browser
 let page
 
@@ -18,23 +21,28 @@ before(async () => {
 describe('Etsy shopping cart', () => {
   it('shows the privacy modal', async () => {
     await page.goto('https://www.etsy.com/c/art-and-collectibles/collectibles/figurines?ref=catnav-66', { waitUntil: 'networkidle2' })
-    await page.waitForSelector('[data-gdpr-single-choice-accept]')
-    await page.click('[data-gdpr-single-choice-accept]')
+    await helpers.acceptGdpr(page, selectors.gdprSingleChoiceAccept)
+    assert.ok('Accepted GDPR consent if it existed')
   }).timeout(20000)
 
   it('selects a product', async () => {
-    await page.waitForSelector('.placeholder-content')
-    const products = await page.$$('.placeholder-content')
-    await products[5].click()
-    await page.waitForSelector('button.btn-buy-box')
+    await helpers.acceptGdpr(page, selectors.gdprSingleChoiceAccept)
+    await page.waitForSelector(selectors.listingLink)
+    const link = await page.evaluate(sel => {
+      const prod = [...document.querySelectorAll(sel)][5]
+      return prod.href
+    }, selectors.listingLink)
+    await page.goto(link, { waitUntil: 'networkidle2' })
+    await page.waitForSelector(selectors.buyBtn)
     assert.ok('Add to cart button showing')
   }).timeout(10000)
 
   it('adds the product to the cart', async () => {
-    await page.click('button.btn-buy-box')
-    await page.waitForSelector('h1.item-count')
-    const quantity = await page.$eval('h1.item-count', counter => { return counter.textContent.trim() })
-    assert.equal(quantity, '1 item in your cart')
+    await helpers.acceptGdpr(page, selectors.gdprSingleChoiceAccept)
+    await page.click(selectors.buyBtn)
+    await page.waitForSelector(selectors.itemCountH1)
+    const quantity = await page.$eval(selectors.itemCountH1, counter => { return counter.textContent.trim() })
+    assert(quantity.includes('1 item in your'))
   }).timeout(10000)
 })
 

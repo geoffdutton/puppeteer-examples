@@ -5,26 +5,30 @@
 
 const assert = require('assert').strict
 const puppeteer = require('puppeteer')
+const helpers = require('../test_helpers')
+const selectors = require('../selectors/codesandbox.io')
 
 let browser
 let page
+let pageHelpers
 
 before(async () => {
   browser = await puppeteer.launch({ headless: true })
   page = await browser.newPage()
+  pageHelpers = helpers.pageHelpersFactory(page)
 })
 
 describe('codesandbox.io', () => {
   it('creates a vanilla.js sandbox', async () => {
+    const vueBtn = selectors.vueBtnXpath
     await page.setViewport({ width: 1280, height: 800 })
     await page.goto('https://codesandbox.io/', { waitUntil: 'networkidle2' })
-    await page.waitForSelector('a[href="/s"]')
-    await page.click('a[href="/s"]')
-    await page.waitForSelector('a[href="/s/vue"]')
-    await page.click('a[href="/s/vue"]')
-    await page.waitForSelector('.react-monaco-editor-container')
-    const editor = await page.$('.react-monaco-editor-container')
-    await page.screenshot({ path: 'codesandbox.png' })
+    await page.waitForSelector(selectors.startingAnchor)
+    await page.click(selectors.startingAnchor)
+    await page.waitForXPath(vueBtn, 5000)
+    await pageHelpers.clickXpath(vueBtn)
+    await page.waitForSelector(selectors.reactEditorContainer)
+    const editor = await page.$(selectors.reactEditorContainer)
     assert.ok(editor)
   }).timeout(30000)
 })
