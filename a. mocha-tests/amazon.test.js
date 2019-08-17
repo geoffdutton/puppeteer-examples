@@ -5,6 +5,7 @@
 
 const assert = require('assert').strict
 const puppeteer = require('puppeteer')
+const selectors = require('../selectors/amazon')
 let browser
 let page
 
@@ -25,8 +26,8 @@ describe('Amazon Homepage', () => {
   it('shows search results after search input', async () => {
     await page.type('#twotabsearchtextbox', 'nyan cat pullover')
     await page.click('input.nav-input')
-    await page.waitForSelector('#resultsCol')
-    const firstProduct = await page.$('a.a-link-normal.a-text-normal')
+    await page.waitForSelector(selectors.resultsCol)
+    const firstProduct = await page.$(selectors.productLinks)
     assert.ok(firstProduct)
   }).timeout(10000)
 })

@@ -25,14 +25,14 @@ const headers = {
   'properties and actions on a page. Install Mocha as a global dependency and run them as any other script\n\n' +
   '```bash\n' +
   'npm i -g mocha\n' +
-  'mocha mocha-tests/alibaba.js\n' +
+  'mocha mocha-tests/alibaba.test.js\n' +
   '```',
   '7. jest-tests': 'Jest test runner scripts that use Puppeteer to check specific properties and actions on a page. ' +
   'Very similar to the Mocha tests, but using the Jest `expect` assertions. Install Jest as a global dependency and ' +
   'run them as any other script\n\n' +
   '```bash\n' +
   'npm i -g jest\n' +
-  'jest jest-tests/alibaba.js\n' +
+  'jest jest-tests/alibaba.spec.js\n' +
   '```'
 }
 

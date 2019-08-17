@@ -9,12 +9,7 @@ describe('Amazon Homepage', () => {
   let browser
   let page
 
-  const selectors = {
-    resultsCol: '[data-component-type="s-search-results"]',
-    productTitleBlock: '#titleBlock',
-    productLinks: 'a.a-link-normal.a-text-normal',
-    nextPage: '[data-component-type="s-pagination"] .a-last'
-  }
+  const selectors = require('../selectors/amazon')
 
   beforeAll(async () => {
     browser = await puppeteer.launch()
@@ -28,13 +23,13 @@ describe('Amazon Homepage', () => {
   test('has search input', async () => {
     await page.setViewport({ width: 1280, height: 800 })
     await page.goto('https://www.amazon.com', { waitUntil: 'networkidle0' })
-    const searchInput = await page.$('#twotabsearchtextbox')
+    const searchInput = await page.$(selectors.searchBox)
     expect(searchInput).toBeTruthy()
   }, 10000)
 
   test('shows search results after search input', async () => {
-    await page.type('#twotabsearchtextbox', 'nyan cat pullover')
-    await page.click('input.nav-input')
+    await page.type(selectors.searchBox, 'nyan cat pullover')
+    await page.click(selectors.searchBtn)
     await page.waitForSelector(selectors.resultsCol)
     const firstProduct = await page.$(selectors.productLinks)
     expect(firstProduct).toBeTruthy()
