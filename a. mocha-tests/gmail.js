@@ -3,7 +3,7 @@
  * @desc Checks the signup flow from the landing page. Clicks the
  */
 
-const assert = require('assert')
+const assert = require('assert').strict
 const puppeteer = require('puppeteer')
 let browser
 let page

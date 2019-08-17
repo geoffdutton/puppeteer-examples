@@ -27,7 +27,7 @@ describe('Amazon Homepage', () => {
 
   test('has search input', async () => {
     await page.setViewport({ width: 1280, height: 800 })
-    await page.goto('https://www.amazon.com',{ waitUntil: 'networkidle0' })
+    await page.goto('https://www.amazon.com', { waitUntil: 'networkidle0' })
     const searchInput = await page.$('#twotabsearchtextbox')
     expect(searchInput).toBeTruthy()
   }, 10000)

@@ -3,7 +3,7 @@
  * @desc Goes to staples.com and adds a some facepaint to an empty shopping cart. Validates the correct amount.
  */
 
-const assert = require('assert')
+const assert = require('assert').strict
 const puppeteer = require('puppeteer')
 let browser
 let page
@@ -30,5 +30,5 @@ describe('Staples shopping cart', () => {
 })
 
 after(async () => {
- await browser.close()
+  await browser.close()
 })

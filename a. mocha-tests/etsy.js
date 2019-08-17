@@ -3,7 +3,7 @@
  * @desc Goes to etsy.com, select the first knick knack and adds it to the shopping cart.
  */
 
-const assert = require('assert')
+const assert = require('assert').strict
 const puppeteer = require('puppeteer')
 let browser
 let page

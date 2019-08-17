@@ -3,7 +3,7 @@
  * @desc Goes to codesandbox.io, creates a new sandbox and selects the Vue.js template
  */
 
-const assert = require('assert')
+const assert = require('assert').strict
 const puppeteer = require('puppeteer')
 
 let browser

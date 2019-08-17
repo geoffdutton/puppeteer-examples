@@ -26,7 +26,7 @@ const selectors = {
   const pullovers = await page.$$(selectors.productLinks)
   await pullovers[2].click()
   await page.waitForSelector(selectors.productTitleBlock)
-  await page.screenshot({path: screenshot})
+  await page.screenshot({ path: screenshot })
   await browser.close()
   console.log('See screenshot: ' + screenshot)
 })()
@@ -34,4 +34,3 @@ const selectors = {
     console.error('FATAL', err)
     process.exit(-1)
   })
-

@@ -3,7 +3,7 @@
  * @desc Goes to duckduckgo.com, searches for "chrome puppeteer", asserts the result and snaps a screenshots
  */
 
-const assert = require('assert')
+const assert = require('assert').strict
 const puppeteer = require('puppeteer')
 
 let browser

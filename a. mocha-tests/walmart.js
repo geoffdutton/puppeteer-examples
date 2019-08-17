@@ -3,7 +3,7 @@
  * @desc Goes to walmart.com and adds a Nintendo game to an empty shopping cart. Validates the correct amount.
  */
 
-const assert = require('assert')
+const assert = require('assert').strict
 const puppeteer = require('puppeteer')
 let browser
 let page

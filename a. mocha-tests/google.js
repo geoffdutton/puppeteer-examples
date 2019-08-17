@@ -3,7 +3,7 @@
  * @desc Searches Google.com for a term and checks if the first link matches. This check should fail.
  */
 
-const assert = require('assert')
+const assert = require('assert').strict
 const puppeteer = require('puppeteer')
 let browser
 let page
