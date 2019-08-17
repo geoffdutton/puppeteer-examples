@@ -8,8 +8,12 @@ const puppeteer = require('puppeteer')
 let browser
 let page
 
+const selectors = {
+  resultHeader: 'a[ping] h3'
+}
+
 before(async () => {
-  browser = await puppeteer.launch()
+  browser = await puppeteer.launch({ headless: true })
   page = await browser.newPage()
 })
 
@@ -23,9 +27,14 @@ describe('Check Google Homepage', () => {
   it('Third search result is my link', async () => {
     await page.type('input[name=q]', 'puppeteer', { delay: 100 })
     await page.click('input[type="submit"]')
-    await page.waitForSelector('h3 a')
-    const links = await page.$$eval('h3 a', anchors => { return anchors.map(a => { return a.textContent }) })
-    assert.equal('This will fail...', links[2])
+    await page.waitForSelector(selectors.resultHeader)
+    const links = await page.$$eval(
+      selectors.resultHeader,
+      anchors => anchors.map(a => a.textContent)
+    )
+    assert.equal('Puppeteer - Google Developers', links[2])
+    // Not sure what the point of this is?
+    // assert.equal('This will fail...', links[2])
   }).timeout(10000)
 })
 

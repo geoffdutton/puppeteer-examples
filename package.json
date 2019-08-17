@@ -31,6 +31,7 @@
   "homepage": "https://github.com/checkly/puppeteer-examples#readme",
   "scripts": {
     "lint": "eslint . --fix",
-    "test:jest": "jest b.\\ jest-tests/"
+    "test:jest": "jest b.\\ jest-tests/",
+    "test:mocha": "mocha a.\\ mocha-tests/"
   }
 }
