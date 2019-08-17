@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "puppeteer": "^1.19.0"
+    "puppeteer": "^1.19.0",
+    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "eslint": "^6.1.0",

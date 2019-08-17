@@ -16,6 +16,6 @@ const screenshot = 'github.png';
   await page.click('[name="commit"]')
   await page.waitForNavigation()
   await page.screenshot({ path: screenshot })
-  browser.close()
+  await browser.close()
   console.log('See screenshot: ' + screenshot)
 })()
