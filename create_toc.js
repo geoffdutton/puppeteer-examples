@@ -21,19 +21,25 @@ const headers = {
   '3. login': 'Common login scenarios on popular website. Credentials mostly supplied with setting `ENV` variables.',
   '4. shopping-carts': 'How to handle shopping cart functions like adding and removing items.',
   '5. parallel-pages': 'How to handle Allow parallel processing pages.',
-  '6. mocha-tests': 'Mocha test runner scripts that use Puppeteer and the standard `assert` library to check specific ' +
+  'a. mocha-tests': 'Mocha test runner scripts that use Puppeteer and the standard `assert` library to check specific ' +
   'properties and actions on a page. Install Mocha as a global dependency and run them as any other script\n\n' +
   '```bash\n' +
   'npm i -g mocha\n' +
   'mocha mocha-tests/alibaba.test.js\n' +
-  '```',
-  '7. jest-tests': 'Jest test runner scripts that use Puppeteer to check specific properties and actions on a page. ' +
+  '```\n' +
+    '```bash\n' +
+    'npm run test:mocha\n' +
+    '```',
+  'b. jest-tests': 'Jest test runner scripts that use Puppeteer to check specific properties and actions on a page. ' +
   'Very similar to the Mocha tests, but using the Jest `expect` assertions. Install Jest as a global dependency and ' +
   'run them as any other script\n\n' +
   '```bash\n' +
   'npm i -g jest\n' +
   'jest jest-tests/alibaba.spec.js\n' +
-  '```'
+  '```\n' +
+  '```bash\n' +
+      'npm run test:jest\n' +
+    '```'
 }
 
 const directories = [
@@ -79,6 +85,7 @@ console.log('\n')
 for (const key in toc) {
   // content
   console.log(`## ${_.capitalize(key)}`)
+  console.log(key)
   console.log(`${headers[key]}  `)
   toc[key].forEach(item => {
     console.log(`### ${item.name}`)

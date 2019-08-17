@@ -60,6 +60,7 @@ You can run these scripts in the [puppeteer sandbox](https://puppeteersandbox.co
 
 
 ## 1. basics
+1. basics
 The very basic on getting useful info from web page. Highlights the basic Puppeteer functions.  
 ### alerts
 Create an alert dialog and close it again.
@@ -132,6 +133,7 @@ Sets the "login_email" property in a Paypal cookie so the login screen is pre-fi
 
 [1. basics/set_cookie.js](https://github.com/checkly/puppeteer-examples/blob/master/1.%20basics/set_cookie.js)
 ## 2. search
+2. search
 Common search input and select methods on search results.  
 ### Amazon search
 Looks for a "nyan cat pullover" on amazon.com, goes two page two clicks the third one.
@@ -154,6 +156,7 @@ Looks for Fleetwood Mac's "Dreams" video on youtube.com and clicks on the third 
 
 [2. search/youtube.js](https://github.com/checkly/puppeteer-examples/blob/master/2.%20search/youtube.js)
 ## 3. login
+3. login
 Common login scenarios on popular website. Credentials mostly supplied with setting `ENV` variables.  
 ### Github
 Logs into Github. Provide your username and password as environment variables when running the script, i.e: `GITHUB_USER=myuser GITHUB_PWD=mypassword node github.js`
@@ -171,6 +174,7 @@ Logs into Instagram with credentials. Provide your username and password as envi
 
 [3. login/instagram.js](https://github.com/checkly/puppeteer-examples/blob/master/3.%20login/instagram.js)
 ## 4. shopping-carts
+4. shopping-carts
 How to handle shopping cart functions like adding and removing items.  
 ### Staples shopping cart
 Goes to the face paint category and adds to the shopping cart.
@@ -183,6 +187,7 @@ Looks for a Nintendo's Mario Odyssey and adds it to the shopping cart.
 
 [4. shopping-carts/walmart.js](https://github.com/checkly/puppeteer-examples/blob/master/4.%20shopping-carts/walmart.js)
 ## 5. parallel-pages
+5. parallel-pages
 How to handle Allow parallel processing pages.  
 ### Screenshots parallel pages
 Allow parallel processing screenshot
@@ -195,7 +200,16 @@ parallel screenshotting of an array of Websites with small example
 
 [5. parallel-pages/screenshots_parallel_cologne_colleges.js](https://github.com/checkly/puppeteer-examples/blob/master/5.%20parallel-pages/screenshots_parallel_cologne_colleges.js)
 ## A. mocha-tests
-undefined  
+a. mocha-tests
+Mocha test runner scripts that use Puppeteer and the standard `assert` library to check specific properties and actions on a page. Install Mocha as a global dependency and run them as any other script
+
+```bash
+npm i -g mocha
+mocha mocha-tests/alibaba.test.js
+```
+```bash
+npm run test:mocha
+```  
 ### Alibaba product search
 Searches Alibaba.com for a product and checks if the results show up
 
@@ -242,7 +256,16 @@ Goes to walmart.com and adds a Nintendo game to an empty shopping cart. Validate
 
 [a. mocha-tests/walmart.test.js](https://github.com/checkly/puppeteer-examples/blob/master/a.%20mocha-tests/walmart.test.js)
 ## B. jest-tests
-undefined  
+b. jest-tests
+Jest test runner scripts that use Puppeteer to check specific properties and actions on a page. Very similar to the Mocha tests, but using the Jest `expect` assertions. Install Jest as a global dependency and run them as any other script
+
+```bash
+npm i -g jest
+jest jest-tests/alibaba.spec.js
+```
+```bash
+npm run test:jest
+```  
 ### Alibaba product search
 Searches Alibaba.com for a product and checks if the results show up
 
