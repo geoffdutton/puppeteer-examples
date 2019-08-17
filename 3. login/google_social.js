@@ -10,7 +10,7 @@ const puppeteer = require('puppeteer');
 (async () => {
   let gUser = process.env.GOOGLE_USER
   let gPassword = process.env.GOOGLE_PWD
-  
+
   if (!gUser) {
     gUser = readlineSync.question('Google Email: ')
   }
