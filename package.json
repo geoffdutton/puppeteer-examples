@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/checkly/puppeteer-examples#readme",
   "scripts": {
-    "linkt": "eslint . --fix",
+    "lint": "eslint . --fix",
     "test:jest": "jest b.\\ jest-tests/"
   }
 }
